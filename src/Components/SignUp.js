@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { signupUser, userSelector, clearState } from './UserSlice';
+import { signupUser, userSelector, clearState } from './userSlice';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -63,7 +63,7 @@ const SignUp = () => {
                     id="name"
                     name="name"
                     type="text"
-                    ref={register({ required: true })}
+                    {...register("name", { required: true })}
                     autocomplete="name"
                     required
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -71,12 +71,12 @@ const SignUp = () => {
                 </div>
               </div>
               <div>
-                {/* <label
+                <label
                   for="email"
                   className="block text-sm font-medium text-gray-700"
                 >
                   Email address
-                </label> */}
+                </label>
                 <div className="mt-1">
                   <input
                     id="email"
@@ -84,7 +84,7 @@ const SignUp = () => {
                     type="email"
                     autocomplete="email"
                     required
-                    ref={register({
+                    {...register("email", {
                       pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
                     })}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -104,7 +104,7 @@ const SignUp = () => {
                     id="password"
                     name="password"
                     type="password"
-                    ref={register({ required: true })}
+                    {...register("password", { required: true })}
                     autocomplete="current-password"
                     required
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
