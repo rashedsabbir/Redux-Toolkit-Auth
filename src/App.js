@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import SignUp from './Components/signUp';
 import Login from './Components/Login';
 import Dashboard from './Components/Dashboard';
+import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 
 
 function App() {
@@ -11,9 +12,11 @@ function App() {
     <div className="App">
       <Router>
       <Routes>
-      <Route exact element={<Login />} path="/login" />
-        <Route exact element={<SignUp />} path="/signup" />
-        <Route exact element={<Dashboard />} path="/" />
+      <Route element={<Login />} exact path="/login" />
+      <Route element={<SignUp />} exact path="/signup" />
+      <Route exact path='/' element={<PrivateRoute/>}>
+      <Route element={<Dashboard />} exact path="/" />
+      </Route>
       </Routes>
       </Router>
     </div>
