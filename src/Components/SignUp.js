@@ -25,16 +25,16 @@ const SignUp = () => {
   }, []);
 
   useEffect(() => {
-    if (isSuccess) {
-      dispatch(clearState());
-      navigate('/');
-    }
-
     if (isError) {
       toast.error(errorMessage);
       dispatch(clearState());
     }
-  }, [isSuccess, isError]);
+
+    if (isSuccess) {
+      dispatch(clearState());
+      navigate('/');
+    }
+  }, [isError, isSuccess]);
 
   return (
     <Fragment>
@@ -152,7 +152,7 @@ const SignUp = () => {
               <div class="relative">
                 <div class="relative flex justify-center text-sm">
                   <span class="px-2 bg-white text-gray-500">
-                    Or <Link to="login"> Login</Link>
+                    Or <Link to="/login"> Login</Link>
                   </span>
                 </div>
               </div>

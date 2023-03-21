@@ -24,6 +24,7 @@ const Dashboard = () => {
 
   const onLogOut = () => {
     localStorage.removeItem('token');
+    dispatch(clearState());
     navigate('/login');
   };
 

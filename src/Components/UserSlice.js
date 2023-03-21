@@ -5,7 +5,7 @@ export const signupUser = createAsyncThunk(
   async ({ name, email, password }, thunkAPI) => {
     try {
       const response = await fetch(
-        'https://reqres.in/api/users',
+        'https://reqres.in/api/register',
         {
           method: 'POST',
           headers: {
@@ -40,7 +40,7 @@ export const loginUser = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const response = await fetch(
-        'https://reqres.in/api/auth',
+        'https://reqres.in/api/login',
         {
           method: 'POST',
           headers: {
@@ -122,8 +122,8 @@ export const userSlice = createSlice({
       console.log('payload', payload);
       state.isFetching = false;
       state.isSuccess = true;
-      state.email = payload.user.email;
-      state.username = payload.user.name;
+      state.email = payload.email;
+      state.username = payload.name;
     },
     [signupUser.pending]: (state) => {
       state.isFetching = true;
