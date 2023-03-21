@@ -27,7 +27,7 @@ const SignUp = () => {
   useEffect(() => {
     if (isSuccess) {
       dispatch(clearState());
-      navigate.push('/');
+      navigate('/');
     }
 
     if (isError) {
