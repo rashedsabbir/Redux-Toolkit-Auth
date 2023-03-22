@@ -6,6 +6,7 @@ import Login from './Components/Login';
 import Dashboard from './Components/Dashboard';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import Navbar from './Components/Navbar';
+import Users from './Components/Users';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route element={<SignUp />} path="/signup" />
       <Route exact path='/' element={<PrivateRoute/>}>
       <Route element={<Dashboard />} exact path="/" />
+      <Route element={<Users />} exact path="/users" />
       </Route>
       </Routes>
       </Router>
