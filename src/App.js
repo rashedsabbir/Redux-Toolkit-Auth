@@ -5,12 +5,14 @@ import SignUp from './Components/signUp';
 import Login from './Components/Login';
 import Dashboard from './Components/Dashboard';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
+import Navbar from './Components/Navbar';
 
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar />
       <Routes>
       <Route element={<Login />} path="/login" />
       <Route element={<SignUp />} path="/signup" />
