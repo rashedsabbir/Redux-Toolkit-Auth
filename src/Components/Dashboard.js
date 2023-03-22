@@ -47,15 +47,14 @@ const Dashboard = () => {
         </div>
       </label>
   </div>
-</div>
+</div >
     <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+    <div className='flex justify-center item-center'>
     {isFetching ? (
         <TailSpin type="Puff" className="grid place-content-center" color="#00BFFF" height={100} width={100} />
       ) : (
         <Fragment>
-          <div className="container mx-auto">
-            Dashboard
-          </div>
+          
 
           <button
             onClick={onLogOut}
@@ -65,6 +64,7 @@ const Dashboard = () => {
           </button>
         </Fragment>
       )}
+    </div>
   </div> 
   <div class="drawer-side">
     <label for="my-drawer-2" class="drawer-overlay"></label> 
@@ -72,7 +72,7 @@ const Dashboard = () => {
       <li><img className='w-40' src='https://i.ibb.co/JqRCKH9/336395884-1019913245648464-1816671081592085140-n.png'></img></li>
       <br />
       <li><p className='text-left'>Pages</p></li>
-      <li><a href='/'><Icon icon="iwwa:dashboard" />Dashboard</a></li>
+      <li><a href='/dashboard'><Icon icon="iwwa:dashboard" />Dashboard</a></li>
       
       <li><a href='/users' className='border bg-slate-200'><Icon icon="mdi:user" />Users</a></li>
       <li><a><Icon icon="mdi:sale-box-outline" />Sales<br /></a></li>

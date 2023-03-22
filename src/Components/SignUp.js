@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signupUser, userSelector, clearState } from './userSlice';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { Icon } from '@iconify/react';
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -32,62 +33,96 @@ const SignUp = () => {
 
     if (isSuccess) {
       dispatch(clearState());
-      navigate('/');
+      navigate('/dashboard');
     }
   }, [isError, isSuccess]);
 
   return (
     <Fragment>
+      <div class="navbar px-12 bg-base-100">
+  <div class="flex-1 ">
+  <img className='w-32' src='https://i.ibb.co/JqRCKH9/336395884-1019913245648464-1816671081592085140-n.png'></img>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      
+      <li className='border rounded-2xl bg-slate-200' tabindex="0">
+        <a className='text-slate-400'>
+          English (UK)
+          <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+        </a>
+        <ul class="p-2 bg-base-100">
+          
+        </ul>
+      </li>
+      
+    </ul>
+  </div>
+</div>
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign Up to your account
+          <h2 class=" text-center text-xl font-bold text-gray-900">
+            Getting Started
           </h2>
+          <h4 class=" mt-2 text-center text-sm font-bold text-slate-400">
+            Create an account to continue
+          </h4>
         </div>
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className='mt-4 flex flex-row gap-6 justify-center'>
+        <div className='border flex flex-row rounded-2xl p-3 bg-slate-200'>
+          
+        <Icon className='text-xl text-red-600 mx-2' icon="mdi:google" />
+        <a className='text-slate-400'>
+        
+          Sign Up with Google
+          
+        </a>
+        </div>
+        <div className='border flex flex-row rounded-2xl p-3 bg-slate-200'>
+        
+        <Icon className='text-slate-400 mx-2 text-xl' icon="ic:baseline-apple" />
+        
+        <a className='text-slate-400'>
+          Sign Up with Apple ID
+          
+        </a>
+        
+        </div>
+        </div>
+        <p className='mt-4 text-slate-400'>OR</p>
+        <div className=" sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form
               className="space-y-6"
               onSubmit={handleSubmit(onSubmit)}
               method="POST"
             >
+              
               <div>
                 <label
-                  for="name"
+                  for="email" 
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Name
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    {...register("name", { required: true })}
-                    autocomplete="name"
-                    required
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  for="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email address
+                  <div className='flex flex-row text-md'>
+                  <Icon className='text-slate-400 mx-2 text-xl' icon="material-symbols:alternate-email" />
+        <p className='text-slate-400'>
+          Your Email
+          
+        </p>
+                  </div>
                 </label>
                 <div className="mt-1">
                   <input
                     id="email"
                     name="email"
                     type="email"
+                    
                     autocomplete="email"
                     required
                     {...register("email", {
                       pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
                     })}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -97,25 +132,39 @@ const SignUp = () => {
                   for="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Password
+                  <div className='flex flex-row text-md'>
+                  <Icon className='text-slate-400 mx-2 text-xl' icon="material-symbols:alternate-email" />
+        <p className='text-slate-400'>
+          Create Password
+          
+        </p>
+                  </div>
                 </label>
                 <div className="mt-1">
                   <input
                     id="password"
                     name="password"
                     type="password"
+                    
                     {...register("password", { required: true })}
                     autocomplete="current-password"
                     required
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
                 </div>
               </div>
+              <progress class="progress bg-none progress-success w-56" value="25" max="100"></progress>
+              <div class="form-control flex flex-row ">
+  
+    
+    <input type="checkbox" checked="" class="mx-3 bg-slate-300 border-0 checkbox" />
+    <span class="label-text text-slate-400">I agree to the Terms & Conditions</span> 
 
+</div>
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   {isFetching ? (
                     <Fragment>
@@ -151,8 +200,8 @@ const SignUp = () => {
             <div class="mt-6">
               <div class="relative">
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 bg-white text-gray-500">
-                    Or <Link to="/login"> Login</Link>
+                  <span class="px-2 bg-white text-slate-400">
+                    Already have an account? <Link to="/login"><span className='text-blue-500'>Login</span></Link>
                   </span>
                 </div>
               </div>
