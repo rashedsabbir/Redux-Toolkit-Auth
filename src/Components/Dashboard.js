@@ -68,7 +68,7 @@ const Dashboard = () => {
   </div> 
   <div class="drawer-side">
     <label for="my-drawer-2" class="drawer-overlay"></label> 
-    <ul class="menu p-2 w-60 bg-base-100 text-base-content">
+    <ul class="menu p-2 w-60 bg-base-100 text-slate-400 text-bold">
       <li><img className='w-40' src='https://i.ibb.co/JqRCKH9/336395884-1019913245648464-1816671081592085140-n.png'></img></li>
       <br />
       <li><p className='text-left'>Pages</p></li>
