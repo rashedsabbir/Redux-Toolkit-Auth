@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,12 +6,23 @@ import { signupUser, userSelector, clearState } from './userSlice';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Icon } from '@iconify/react';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const { register, errors, handleSubmit } = useForm();
   const navigate = useNavigate();
-
+  const [isChecked, setIsChecked] = useState(false);
+  
+  const handleOnChange = () => {
+    setIsChecked(!isChecked);
+  }
+  const [inputValue, setInputValue] = useState('');
+  const handlePasswordChange = (event) => {
+    console.log(event.target.value);
+    const { value } = event.target;
+    setInputValue(value);
+  };
   const { isFetching, isSuccess, isError, errorMessage } = useSelector(
     userSelector
   );
@@ -33,7 +44,7 @@ const SignUp = () => {
 
     if (isSuccess) {
       dispatch(clearState());
-      navigate('/dashboard');
+      navigate('/users');
     }
   }, [isError, isSuccess]);
 
@@ -71,7 +82,7 @@ const SignUp = () => {
         <div className='mt-4 flex flex-row gap-6 justify-center'>
         <div className='border flex flex-row rounded-2xl p-3 bg-slate-200'>
           
-        <Icon className='text-xl text-red-600 mx-2' icon="mdi:google" />
+        <img className='w-5 h-5 mx-2' src="https://i.ibb.co/smLkHpG/google.png" alt=""  />
         <a className='text-slate-400'>
         
           Sign Up with Google
@@ -80,7 +91,7 @@ const SignUp = () => {
         </div>
         <div className='border flex flex-row rounded-2xl p-3 bg-slate-200'>
         
-        <Icon className='text-slate-400 mx-2 text-xl' icon="ic:baseline-apple" />
+        <Icon className='text-slate-400 mx-2 text-2xl' icon="ic:baseline-apple" />
         
         <a className='text-slate-400'>
           Sign Up with Apple ID
@@ -133,7 +144,7 @@ const SignUp = () => {
                   className="block text-sm font-medium text-gray-700"
                 >
                   <div className='flex flex-row text-md'>
-                  <Icon className='text-slate-400 mx-2 text-xl' icon="material-symbols:alternate-email" />
+                  <Icon className='text-slate-400 mx-2 text-xl rounded' icon="material-symbols:lock" />
         <p className='text-slate-400'>
           Create Password
           
@@ -146,18 +157,22 @@ const SignUp = () => {
                     name="password"
                     type="password"
                     
+                    onChange={handlePasswordChange}
                     {...register("password", { required: true })}
                     autocomplete="current-password"
                     required
+                    value={inputValue}
                     className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
+                 <PasswordStrengthBar password={inputValue} minLength={5}/>
                 </div>
               </div>
               <progress class="progress bg-none progress-success w-56" value="25" max="100"></progress>
               <div class="form-control flex flex-row ">
   
     
-    <input type="checkbox" checked="" class="mx-3 bg-slate-300 border-0 checkbox" />
+    <input type="checkbox" class="mx-3 bg-slate-300 border-0 checkbox" checked={isChecked}
+          onChange={handleOnChange}/>
     <span class="label-text text-slate-400">I agree to the Terms & Conditions</span> 
 
 </div>

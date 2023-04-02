@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,8 +17,12 @@ const Login = ({}) => {
   const onSubmit = (data) => {
     dispatch(loginUser(data));
   };
+  const [isChecked, setIsChecked] = useState(false);
 
-  useEffect(() => {
+  const handleOnChange = () => {
+    setIsChecked(!isChecked);
+  }
+    useEffect(() => {
     return () => {
       dispatch(clearState());
     };
@@ -32,7 +36,7 @@ const Login = ({}) => {
 
     if (isSuccess) {
       dispatch(clearState());
-      navigate('/dashboard');
+      navigate('/users');
     }
   }, [isError, isSuccess]);
 
@@ -69,7 +73,7 @@ const Login = ({}) => {
         </div>
         <div className='mt-4 flex flex-row gap-6 justify-center'>
         <div className='border flex flex-row rounded-2xl p-3 bg-slate-200'>
-        <Icon className='text-xl text-red-600 mx-2' icon="mdi:google" />
+        <img className='w-5 h-5 mx-2' src="https://i.ibb.co/smLkHpG/google.png" alt="" srcset="" />
         <a className='text-slate-400'>
         
           Sign Up with Google
@@ -126,7 +130,7 @@ const Login = ({}) => {
                   className="block text-sm font-medium text-gray-700"
                 >
                   <div className='flex flex-row text-md'>
-                  <Icon className='text-slate-400 mx-2 text-xl' icon="material-symbols:alternate-email" />
+                  <Icon className='text-slate-400 mx-2 text-xl rounded' icon="material-symbols:lock" />
         <p className='text-slate-400'>
           Create Password
           
@@ -148,7 +152,8 @@ const Login = ({}) => {
               <div class="form-control flex flex-row ">
   
     
-  <input type="checkbox" checked="" class="mx-3 bg-slate-300 border-0 checkbox" />
+  <input type="checkbox" class="mx-3 bg-slate-300 border-0 checkbox " checked={isChecked}
+          onChange={handleOnChange} />
   <span class="label-text text-slate-400">Remember Me</span> 
 
 </div>
