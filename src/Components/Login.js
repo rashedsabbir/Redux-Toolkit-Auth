@@ -72,21 +72,27 @@ const Login = ({}) => {
           </h4>
         </div>
         <div className='mt-4 flex flex-row gap-6 justify-center'>
+        <button>
         <div className='border flex flex-row rounded-2xl p-3 bg-slate-200'>
-        <img className='w-5 h-5 mx-2' src="https://i.ibb.co/smLkHpG/google.png" alt="" srcset="" />
+          
+        <img className='w-5 h-5 mx-2' src="https://i.ibb.co/smLkHpG/google.png" alt=""  />
         <a className='text-slate-400'>
         
           Sign Up with Google
           
         </a>
-        </div>
+        </div></button>
+        <button>
         <div className='border flex flex-row rounded-2xl p-3 bg-slate-200'>
-        <Icon className='text-slate-400 mx-2 text-xl' icon="ic:baseline-apple" />
+        
+        <Icon className='text-slate-400 mx-2 text-2xl' icon="ic:baseline-apple" />
+        
         <a className='text-slate-400'>
           Sign Up with Apple ID
           
         </a>
-        </div>
+        
+        </div></button>
         </div>
         <p className='mt-4 text-slate-400'>OR</p>
         <div className=" sm:mx-auto sm:w-full sm:max-w-md">
@@ -97,55 +103,49 @@ const Login = ({}) => {
               method="POST"
             >
               <div>
-                <label
-                  for="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  <div className='flex flex-row text-md'>
-                  <Icon className='text-slate-400 mx-2 text-xl' icon="material-symbols:alternate-email" />
-        <p className='text-slate-400'>
-          Your Email
+  <label
+    for="email" 
+    className="block text-sm font-medium text-gray-700"
+  >
+    
+  </label>
+  <div className="relative">
+  <Icon className='text-slate-400 mx-2 text-xl rounded absolute left-3 top-1/2 transform -translate-y-1/2' icon="material-symbols:alternate-email" />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Your Email"
+          {...register("email", {
+            pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
+          })}
           
-        </p>
-                  </div>
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    {...register("email", {
-                      pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
-                    })}
-                    required
-                    className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
+          className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pl-10"
+        />
+        
+      </div>
+</div>
 
-              <div>
+<div>
                 <label
                   for="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  <div className='flex flex-row text-md'>
-                  <Icon className='text-slate-400 mx-2 text-xl rounded' icon="material-symbols:lock" />
-        <p className='text-slate-400'>
-          Create Password
-          
-        </p>
-                  </div>
+                  
+        
+                  
                 </label>
-                <div className="mt-1">
+                <div  className='relative'>
+                  <Icon className='text-slate-400 mx-2 text-xl rounded absolute left-3 top-1/2 transform -translate-y-1/2' icon="material-symbols:lock" />
                   <input
                     id="password"
                     name="password"
                     type="password"
+                    placeholder='Password'
                     {...register("password", { required: true })}
                     autoComplete="current-password"
                     required
-                    className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pl-10"
                   />
                 </div>
               </div>

@@ -18,11 +18,9 @@ const SignUp = () => {
     setIsChecked(!isChecked);
   }
   const [inputValue, setInputValue] = useState('');
-  const handlePasswordChange = (event) => {
-    console.log(event.target.value);
-    const { value } = event.target;
-    setInputValue(value);
-  };
+ 
+
+  
   const { isFetching, isSuccess, isError, errorMessage } = useSelector(
     userSelector
   );
@@ -47,6 +45,7 @@ const SignUp = () => {
       navigate('/users');
     }
   }, [isError, isSuccess]);
+
 
   return (
     <Fragment>
@@ -80,6 +79,7 @@ const SignUp = () => {
           </h4>
         </div>
         <div className='mt-4 flex flex-row gap-6 justify-center'>
+        <button>
         <div className='border flex flex-row rounded-2xl p-3 bg-slate-200'>
           
         <img className='w-5 h-5 mx-2' src="https://i.ibb.co/smLkHpG/google.png" alt=""  />
@@ -88,7 +88,8 @@ const SignUp = () => {
           Sign Up with Google
           
         </a>
-        </div>
+        </div></button>
+        <button>
         <div className='border flex flex-row rounded-2xl p-3 bg-slate-200'>
         
         <Icon className='text-slate-400 mx-2 text-2xl' icon="ic:baseline-apple" />
@@ -98,7 +99,7 @@ const SignUp = () => {
           
         </a>
         
-        </div>
+        </div></button>
         </div>
         <p className='mt-4 text-slate-400'>OR</p>
         <div className=" sm:mx-auto sm:w-full sm:max-w-md">
@@ -110,64 +111,64 @@ const SignUp = () => {
             >
               
               <div>
-                <label
-                  for="email" 
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  <div className='flex flex-row text-md'>
-                  <Icon className='text-slate-400 mx-2 text-xl' icon="material-symbols:alternate-email" />
-        <p className='text-slate-400'>
-          Your Email
+  <label
+    for="email" 
+    className="block text-sm font-medium text-gray-700"
+  >
+    
+  </label>
+  <div className="relative">
+  <Icon className='text-slate-400 mx-2 text-xl rounded absolute left-3 top-1/2 transform -translate-y-1/2' icon="material-symbols:alternate-email" />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Your Email"
+          {...register("email", {
+            pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
+          })}
           
-        </p>
-                  </div>
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    
-                    autocomplete="email"
-                    required
-                    {...register("email", {
-                      pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i,
-                    })}
-                    className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  />
-                </div>
-              </div>
+          className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pl-10"
+        />
+        
+      </div>
+</div>
+
 
               <div>
                 <label
                   for="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  <div className='flex flex-row text-md'>
-                  <Icon className='text-slate-400 mx-2 text-xl rounded' icon="material-symbols:lock" />
-        <p className='text-slate-400'>
-          Create Password
-          
-        </p>
-                  </div>
+                  
+        
+                  
                 </label>
-                <div className="mt-1">
+                <div  className='relative'>
+                  <Icon className='text-slate-400 mx-2 text-xl rounded absolute left-3 top-1/4 transform -translate-y-1/2' icon="material-symbols:lock" />
                   <input
                     id="password"
                     name="password"
                     type="password"
                     
-                    onChange={handlePasswordChange}
+                    onChange={(e) => {
+                      if (e.target && e.target.hasOwnProperty("value")) {
+                        const value = e.target.value;
+                        setInputValue(value);
+                        console.log("Input value updated:", inputValue);
+                      }
+                    }}
                     {...register("password", { required: true })}
-                    autocomplete="current-password"
-                    required
-                    value={inputValue}
-                    className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    // autocomplete="current-password"
+                    
+                    placeholder='Create Password'
+                    
+                    className="appearance-none block w-full px-3 py-2 bg-slate-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pl-10"
                   />
-                 <PasswordStrengthBar password={inputValue} minLength={5}/>
+                 <PasswordStrengthBar password={inputValue} />
                 </div>
               </div>
-              <progress class="progress bg-none progress-success w-56" value="25" max="100"></progress>
+              
               <div class="form-control flex flex-row ">
   
     
